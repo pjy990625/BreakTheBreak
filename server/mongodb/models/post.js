@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const Post = new mongoose.schema({
+const Post = new mongoose.Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId,
         default: mongoose.Types.ObjectId(),
@@ -10,6 +10,11 @@ const Post = new mongoose.schema({
         type: String,
         required: true
     },
+    type: {
+        type: String,
+        enum: ["free", "job"],
+        required: true
+    },
     title: {
         type: String,
         required: true
@@ -17,6 +22,9 @@ const Post = new mongoose.schema({
     body: {
         type: String,
         required: true
+    },
+    keywords: {
+        type: [String]
     },
     timestamp: {
         type: Date,
