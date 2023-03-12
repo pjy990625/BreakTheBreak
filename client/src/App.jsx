@@ -1,12 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import ReadPost from './pages/ReadPost';
-import WritePost from './pages/WritePost';
-import Trend from "./pages/Trend";
-import Forum from './pages/Forum';
-import JobBoard from "./pages/JobBoard";
-import Profile from './pages/Profile';
-import { Home, Login } from "./pages";
+import { Home, Login, ReadPost, WritePost, Trend, Forum, JobBoard, Profile } from "./pages";
 import { useEffect, useState } from 'react';
 import "./assets/styles/app.css";
 
@@ -45,6 +39,7 @@ const App = () => {
         <Route path="/write/:id" element={user ? <WritePost /> : <Navigate to="/login" />} />
         <Route path="/forum/:id" element={user ? <Forum /> : <Navigate to="/login" />} />
         <Route path="/trend" element={user ? <Trend /> : <Navigate to="/login" />} />
+        <Route path="/profile/:id" element={user ? <Profile /> : <Navigate to="/login" />} />
       </Routes>
     </BrowserRouter>
   );
