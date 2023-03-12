@@ -18,6 +18,7 @@ const WritePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [search, setSearch] = useState("");
+  const [selectedKeywords, setSelectedKeywords] = useState([]);
   const keywords = ["hello", "world", "this", "is", "a", "test", "of", "the", "emergency", "broadcast", "system"];
 
   const post = async () => {
@@ -34,9 +35,14 @@ const WritePost = () => {
     console.log(response);
   };
 
-  const search_keyword = (search) => {
+  const selectKeyword = (keyword) => {
+    setSelectedKeywords([...selectedKeywords, keyword]);
+    filterKeyword(search);
+  };
+
+  const filterKeyword = (search) => {
     return keywords.filter((keyword) => {
-      return keyword.toLowerCase().includes(search.toLowerCase());
+      return keyword.toLowerCase().includes(search.toLowerCase()) && !selectedKeywords.includes(keyword);
     });
   };
 
@@ -53,8 +59,16 @@ const WritePost = () => {
         <h1>Keywords</h1>
         <input type="text" placeholder="Keywords" onChange={(e) => setSearch(e.target.value)} />
         <div style={keyword_viewport}>
-          {search_keyword(search).map((keyword, index) => (
-            <KeywordBlock key={index} selected={false} content={keyword}></KeywordBlock>
+          {filterKeyword(search).map((keyword, index) => (
+            <KeywordBlock key={index} selected={false} content={keyword} onClick={selectKeyword}></KeywordBlock>
+          ))}
+        </div>
+      </div>
+      <div>
+        <h1>Selected Keywords</h1>
+        <div style={keyword_viewport}>
+          {selectedKeywords.map((keyword, index) => (
+            <KeywordBlock key={index} selected={true} content={keyword}></KeywordBlock>
           ))}
         </div>
       </div>
