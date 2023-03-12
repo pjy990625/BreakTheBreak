@@ -40,10 +40,7 @@ const Home = () => {
 
   useEffect(() => {
     const loadPosts = async () => {
-      let response;
-
-      response = await fetch(`http://localhost:2023/api/post/search?show=All&searchMethod=${searchCategory}&searchKeyword=${searchKeyword}`);
-
+      const response = await fetch(`http://localhost:2023/api/post/search?show=${category}&searchMethod=${searchCategory}&searchKeyword=${searchKeyword}`);
       const result = await response.json();
       setPosts(result.data);
     };

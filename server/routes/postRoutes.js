@@ -25,8 +25,8 @@ router.route("/write/:id").put(async (req, res) => {
       candidates.forEach((candidate) => {
         if (candidate.uid !== req.params.id) {
           sendEmail(candidate.email, "[BreakTheBreak] A Job Oppertunity that fits your skill qualification!", {
-            text: `You have been matched with a job oppertunity that fits your skill qualification!:\r\n${req.body.title}\r\n`,
-            html: req.body.content
+            text: `You have been matched with a job oppertunity that fits your skill qualification!:\r\n`,
+            html: `<b>${req.body.title}</b><br>${req.body.content}`
           });
         }
       });
@@ -49,13 +49,13 @@ router.route("/search").get(async (req, res) => {
             method.title = { "$regex": searchKeyword, "$options": "i" };
             break;
         case "Content":
-            method.body = { "$regex": searchKeyword, "$options": "i" };
+            method.content = { "$regex": searchKeyword, "$options": "i" };
             break;
         case "Keywords":
             method.keywords = { "$regex": searchKeyword, "$options": "i" };
             break;
         default:
-            method.$or = [{ title: { "$regex": searchKeyword, "$options": "i" }}, { body: {"$regex": searchKeyword, "$options": "i" }}];
+            method.$or = [{ title: { "$regex": searchKeyword, "$options": "i" }}, { content: {"$regex": searchKeyword, "$options": "i" }}];
     }
     try {
         const allPosts = await Post.find(method);
@@ -65,29 +65,6 @@ router.route("/search").get(async (req, res) => {
         res.status(500).json({ success: false, message: err });
     }
 });
-
-
-// // get all job posts
-// router.route("/job").get(async (req, res) => {
-//     try {
-//         const jobPosts = await Post.find({ type: "job" });
-//         res.status(200).json({ success: true, data: jobPosts });
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).json({ success: false, message: err });
-//     }
-// });
-
-// // get all free posts
-// router.route("/general").get(async (req, res) => {
-//     try {
-//         const generalPosts = await Post.find({ type: "general" });
-//         res.status(200).json({ success: true, data: generalPosts });
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).json({ success: false, message: err });
-//     }
-// });
 
 // get tiobe index
 router.route("/tiobe").get(async (req, res) => {

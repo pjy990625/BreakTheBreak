@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar';
 
 const Profile = () => {
   const { id } = useParams();
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("We don't have your email address!");
   const [search, setSearch] = useState("");
   const [selectedKeywords, setSelectedKeywords] = useState([]);
   const [keywords, setKeywords] = useState([]);
@@ -71,6 +71,7 @@ const Profile = () => {
   };
 
   const saveProfile = async () => {
+    console.log(email);
     await fetch(`http://localhost:2023/api/keyword/update_user/${id}`, {
       method: "PUT",
       headers: {
@@ -89,7 +90,8 @@ const Profile = () => {
       e.style.display = toggle ? "block" : "none";
     });
     if (!toggle) {
-      setEmail(document.querySelector('.savable').value);
+      if (document.querySelector('.savable').value === "") return;
+      else setEmail(document.querySelector('.savable').value);
       saveProfile();
     }
   };
@@ -101,10 +103,11 @@ const Profile = () => {
         <Navbar user={user} />
         <div className="main">
           <h1 className="text-bice-blue text-2xl font-bold mb-5">Profile</h1>
-          <span className="editable block text-slate-700 font-semibold">{email}</span>
-          <input className="savable hidden border-2 border-slate-700 rounded-lg" type="text" placeholder={email} />
+          <span className="mt-3 text-bice-blue font-semibold">Email Address</span>
+          <span className="editable block text-slate-700 font-semibold bg-slate-100 border rounded-lg h-fit p-3">{email}</span>
+          <input className="savable hidden border-2 border-slate-700 rounded-lg" type="text" placeholder="Email Address" />
           <div className="savable hidden">
-            <h1 className="mt-5 mb-3 text-bice-blue font-semibold text-lg">Keywords</h1>
+            <h1 className="mt-3 text-bice-blue font-semibold">Keywords</h1>
             <input className="border-slate-500 border-2 p-1 rounded-lg mb-3" type="text" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
             <button className="bg-bice-blue text-white p-1 px-2 rounded-lg ml-5" onClick={() => setSelectedKeywords([...selectedKeywords, search])}>Add Your Own!</button>
             <div className="bg-slate-100 border rounded-lg h-fit p-3">
@@ -114,7 +117,7 @@ const Profile = () => {
             </div>
           </div>
           <div className="block">
-            <h1 className="mt-3 text-bice-blue font-semibold">Selected Keywords</h1>
+            <h1 className="mt-3 text-bice-blue font-semibold">Your Skills</h1>
             <div className="bg-slate-100 border rounded-lg h-fit p-3">
               {selectedKeywords.map((keyword, index) => (
                 <KeywordBlock key={index} content={keyword} selected={true} onClick={selectKeyword}></KeywordBlock>
