@@ -12,7 +12,7 @@ const Post = new mongoose.Schema({
     },
     type: {
         type: String,
-        enum: ["general", "job"],
+        enum: ["general", "hiring", "seeking"],
         required: true
     },
     title: {

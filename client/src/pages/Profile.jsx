@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { useParams, Link } from "react-router-dom";
 import KeywordBlock from "../components/keyword_block";
 
 const keyword_viewport = {
@@ -11,33 +9,14 @@ const keyword_viewport = {
   overflowY: "scroll",
 }
 
-const WritePost = () => {
-
+const Profile = () => {
   const { id } = useParams();
-
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const categories = ["General", "Hiring", "Seeking"];
-  const [category, setCategory] = useState("General");
+  
+  const [email, setEmail] = useState("");
   const [search, setSearch] = useState("");
   const [selectedKeywords, setSelectedKeywords] = useState([]);
   const [keywords, setKeywords] = useState([]);
-
-  const post = async () => {
-    const timestamp = { timestamp: new Date() };
-    const response = await fetch(`http://localhost:2023/api/post/write/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ title, content, category, timestamp, selectedKeywords }),
-    });
-
-    await response.json();
-    if (response.status === 200) {
-      window.location.href = `/read/${id}`;
-    }
-  };
+  const [edit, setEdit] = useState(false);
 
   useEffect(() => {
     const loadKeywords = async () => {
@@ -46,12 +25,23 @@ const WritePost = () => {
       return result.data.map((keyword) => keyword.name);
     };
 
+    const loadUserKeywords = async () => {
+      const response = await fetch(`http://localhost:2023/api/keyword/all_from_user/${id}`);
+      const result = await response.json();
+      return result.data.keywords;
+    };
+
     loadKeywords().then((loaded) => {
       setKeywords(loaded.sort());
+    }).then(() => {
+      loadUserKeywords().then((loaded) => {
+        setSelectedKeywords(loaded);
+      });
     });
   }, []);
 
   const selectKeyword = (keyword, selecting) => {
+    if (!edit) return;
     if (selecting) setSelectedKeywords([...selectedKeywords, keyword]);
     else setSelectedKeywords(selectedKeywords.filter((k) => k !== keyword));
     filterKeywords(search);
@@ -63,21 +53,36 @@ const WritePost = () => {
     });
   };
 
+  const saveProfile = async () => {
+    await fetch(`http://localhost:2023/api/keyword/update_user/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email, selectedKeywords }),
+    });
+  };
+
+  const toggleEdit = (toggle) => {
+    setEdit(toggle);
+    Array.from(document.querySelectorAll('.editable')).forEach((e) => {
+      e.style.display = toggle ? "none" : "block";
+    });
+    Array.from(document.querySelectorAll('.savable')).forEach((e) => {
+      e.style.display = toggle ? "block" : "none";
+    });
+    if (!toggle) {
+      setEmail(document.querySelector('.savable').value);
+      saveProfile();
+    }
+  };
+  
   return (
     <div>
-      <h1>Write Post</h1>
-      <input type="text" placeholder="Title" onChange={(e) => setTitle(e.target.value)} />
-      <select className="bg-bice-blue text-white px-3 py-1 rounded-lg" onChange={(e) => setCategory(e.target.value)}>
-        {categories.map((category, index) => (
-          <option key={index} value={category}>{category}</option>
-        ))}
-      </select>
-      <CKEditor
-        editor={ ClassicEditor }
-        onChange={( event, editor ) => setContent(editor.getData())}
-      />
-      <button onClick={post}>Post</button>
-      <div>
+      <h1 className=''>Profile</h1>
+      <span className="editable block">{email}</span>
+      <input className="savable hidden" type="text" placeholder={email} />
+      <div className="savable hidden">
         <h1>Keywords</h1>
         <input type="text" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
         <button onClick={() => setSelectedKeywords([...selectedKeywords, search])}>Add Your Own!</button>
@@ -87,7 +92,7 @@ const WritePost = () => {
           ))}
         </div>
       </div>
-      <div>
+      <div className="block">
         <h1>Selected Keywords</h1>
         <div style={keyword_viewport}>
           {selectedKeywords.map((keyword, index) => (
@@ -95,9 +100,10 @@ const WritePost = () => {
           ))}
         </div>
       </div>
-      <span>{title}</span>
+      <button className="editable block" onClick={() => toggleEdit(true)}>Edit</button>
+      <button className="savable hidden" onClick={() => toggleEdit(false)}>Save</button>
     </div>
-  )
-}
+  );
+};
 
-export default WritePost;
+export default Profile;

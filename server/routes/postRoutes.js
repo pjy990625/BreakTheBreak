@@ -5,19 +5,30 @@ import Post from "../mongodb/models/post.js"
 const router = express.Router();
 
 router.route("/write/:id").put(async (req, res) => {
-
   const newPost = new Post({
     _id: new mongoose.Types.ObjectId(),
     uid: req.params.id,
-    type: "general",
     title: req.body.title,
     content: req.body.content,
+    type: req.body.category.toLowerCase(),
     keywords: req.body.selectedKeywords,
     timestamp: req.body.timestamp.timestamp,
   });
 
   try {
     Post.create(newPost);
+    if (req.body.category.toLowerCase() === "hiring") {
+      const candidates = await User.find({ keywords: { $in: req.body.selectedKeywords } });
+      candidates.forEach((candidate) => {
+        if (candidate.uid !== req.params.id) {
+          sendEmail(candidate.email, "[BreakTheBreak] A Job Oppertunity that fits your skill qualification!", {
+            text: `You have been matched with a job oppertunity that fits your skill qualification!:\r\n${req.body.title}\r\n`,
+            html: req.body.content
+          });
+        }
+      });
+    }
+    console.log("mail sent");
     res.status(200).json({ success: true, result: "post successful" });
   } catch (err) {
     res.status(500).json({ success: false, message: err });
@@ -51,5 +62,25 @@ router.route("/search").get(async (req, res) => {
         res.status(500).json({ success: false, message: err });
     }
 });
+
+async function sendEmail(recipient, title, content) {
+  const transporter = nodemailer.createTransport({
+    host: 'smtps.hiworks.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: 'dkdlenlggg2@hans.best',
+      pass: 'qlalfqjsgh12'
+    },
+    tls: { rejectUnauthorized: false }
+  });
+  await transporter.sendMail({
+    from: 'dkdlenlggg2@hiworks.co.kr',
+    to: recipient,
+    subject: title,
+    text: content.text,
+    html: content.html
+  });
+}
 
 export default router;

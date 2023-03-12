@@ -10,6 +10,7 @@ const Home = () => {
       <h1 className=''>Home</h1>
       <Link to={id ? `/read/${id}` : "login"}>Read</Link>
       <Link to={id ? `/write/${id}` : "login"}>Write</Link>
+      <Link to={id ? `/profile/${id}` : "login"}>Profile</Link>
     </div>
   )
 }

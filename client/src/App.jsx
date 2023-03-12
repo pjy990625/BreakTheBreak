@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import ReadPost from './pages/ReadPost';
 import WritePost from './pages/WritePost';
+import Profile from './pages/Profile';
 import { Home, Login } from "./pages";
 import { useEffect, useState } from 'react';
 
@@ -47,6 +48,7 @@ const App = () => {
             <Route path="/:id" element={<Home />} />
             <Route path="/read/:id" element={<ReadPost />} />
             <Route path="/write/:id" element={<WritePost />} />
+            <Route path="/profile/:id" element={<Profile />} />
           </Routes>
         </main>
       </BrowserRouter>

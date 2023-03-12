@@ -12,6 +12,12 @@ const UserSchema = new mongoose.Schema({
     tokenExpiration: {
         type: Number,
     },
+    email: {
+        type: String,
+    },
+    keywords: {
+        type: [String],
+    }
 });
 
 const User = mongoose.model("User", UserSchema);
