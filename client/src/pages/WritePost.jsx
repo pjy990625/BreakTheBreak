@@ -7,13 +7,6 @@ import Sidebar from "../components/Sidebar";
 import Navbar from '../components/Navbar';
 import "../index.css";
 
-const keyword_viewport = {
-  width: "200px",
-  height: "200px",
-  border: "1px solid black",
-  overflowY: "scroll",
-}
-
 const WritePost = () => {
 
   const { id } = useParams();
