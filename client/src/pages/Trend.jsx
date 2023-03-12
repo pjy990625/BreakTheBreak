@@ -46,27 +46,31 @@ const Trend = () => {
         <Navbar user={user} />
         <div className="main">
           <h2 className="text-bice-blue text-2xl font-bold mb-5">Market Trends</h2>
-          <table className="w-full">
-            <thead className="bg-bice-blue text-white">
-              <tr className="text-left">
-                <th className="pl-3 py-1">Ranking</th>
-                <th className="pl-3 py-1" colspan="2">Programming Language</th>
-                <th className="pl-3 py-1">Rating</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rankings.map((item, index) => {
-                return (
-                  <tr className={`text-slate-500 font-semibold text-left ${(index % 2 !== 0) ? "bg-slate-200" : "bg-slate-100"}`}>
-                    <td className="pl-3 py-3">{item.rank}</td>
-                    <td className="pl-3 py-3"><img src={`https://www.tiobe.com/${item.logoSrc}`} alt="logo" /></td>
-                    <td className="pl-3 py-3">{item.language}</td>
-                    <td className="pl-3 py-3">{item.rating}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          {rankings.length === 0 ? (
+            <div className="text-slate-700 font-semibold text-lg">Loading...</div>
+          ) : (
+            <table className="w-full">
+              <thead className="bg-bice-blue text-white">
+                <tr className="text-left">
+                  <th className="pl-3 py-1">Ranking</th>
+                  <th className="pl-3 py-1" colspan="2">Programming Language</th>
+                  <th className="pl-3 py-1">Rating</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rankings.map((item, index) => {
+                  return (
+                    <tr className={`text-slate-500 font-semibold text-left ${(index % 2 !== 0) ? "bg-slate-200" : "bg-slate-100"}`}>
+                      <td className="pl-3 py-3">{item.rank}</td>
+                      <td className="pl-3 py-3"><img src={`https://www.tiobe.com/${item.logoSrc}`} alt="logo" /></td>
+                      <td className="pl-3 py-3">{item.language}</td>
+                      <td className="pl-3 py-3">{item.rating}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
     </>
