@@ -71,34 +71,36 @@ const WritePost = () => {
   };
 
   return (
-    <div>
+    <>
       <Navbar user={user} />
-      <h1>Write Post</h1>
-      <input type="text" placeholder="Title" onChange={(e) => setTitle(e.target.value)} />
-      <CKEditor
-        editor={ClassicEditor}
-        onChange={(event, editor) => setContent(editor.getData())}
-      />
-      <button onClick={post}>Post</button>
-      <div>
-        <h1>Keywords</h1>
-        <input type="text" placeholder="Keywords" onChange={(e) => setSearch(e.target.value)} />
-        <div style={keyword_viewport}>
-          {filterKeyword(search).map((keyword, index) => (
-            <KeywordBlock key={index} selected={false} content={keyword} onClick={selectKeyword}></KeywordBlock>
-          ))}
+      <div className="main">
+        <h1>Write Post</h1>
+        <input type="text" placeholder="Title" onChange={(e) => setTitle(e.target.value)} />
+        <CKEditor
+          editor={ClassicEditor}
+          onChange={(event, editor) => setContent(editor.getData())}
+        />
+        <button onClick={post}>Post</button>
+        <div>
+          <h1>Keywords</h1>
+          <input type="text" placeholder="Keywords" onChange={(e) => setSearch(e.target.value)} />
+          <div style={keyword_viewport}>
+            {filterKeyword(search).map((keyword, index) => (
+              <KeywordBlock key={index} selected={false} content={keyword} onClick={selectKeyword}></KeywordBlock>
+            ))}
+          </div>
         </div>
-      </div>
-      <div>
-        <h1>Selected Keywords</h1>
-        <div style={keyword_viewport}>
-          {selectedKeywords.map((keyword, index) => (
-            <KeywordBlock key={index} selected={true} content={keyword}></KeywordBlock>
-          ))}
+        <div>
+          <h1>Selected Keywords</h1>
+          <div style={keyword_viewport}>
+            {selectedKeywords.map((keyword, index) => (
+              <KeywordBlock key={index} selected={true} content={keyword}></KeywordBlock>
+            ))}
+          </div>
         </div>
       </div>
       <Footer />
-    </div>
+    </>
   )
 }
 

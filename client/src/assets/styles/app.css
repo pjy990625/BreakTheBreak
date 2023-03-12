@@ -10,7 +10,7 @@ body {
 
 .navbar {
     height: 50px;
-    background-color: #91C859;
+    background-color: #0e6ba8;
     color: white;
     display: flex;
     align-items: center;
@@ -45,7 +45,7 @@ body {
 
 .footer {
     height: 50px;
-    background-color: #91C859;
+    background-color: #0e6ba8;
     color: white;
     display: flex;
     align-items: center;

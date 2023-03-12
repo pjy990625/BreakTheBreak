@@ -31,13 +31,15 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <Navbar user={user} />
-      <h1 className=''>Home</h1>
-      <Link to={id ? `/read/${id}` : "login"}>Read</Link>
-      <Link to={id ? `/write/${id}` : "login"}>Write</Link>
+      <div className="main">
+        <h1 className=''>Home</h1>
+        <Link to={id ? `/read/${id}` : "login"}>Read</Link>
+        <Link to={id ? `/write/${id}` : "login"}>Write</Link>
+      </div>
       <Footer />
-    </div>
+    </>
   )
 }
 

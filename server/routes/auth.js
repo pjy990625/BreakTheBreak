@@ -2,7 +2,7 @@ import express from "express";
 import passport from "passport";
 
 const router = express.Router();
-const CLIENT_URL = "http://localhost:3000"
+const CLIENT_URL = "http://localhost:3000/:id"
 
 router.get('/login/success', (req, res) => {
     if (req.user) {

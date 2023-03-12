@@ -59,41 +59,43 @@ const ReadPost = () => {
   }, [category]);
 
   return (
-    <div className="max-w-3xl">
+    <>
       <Navbar user={user} />
-      <h2 className="text-blue-900 text-xl font-bold">Read Posts</h2>
+      <div className="main">
+        <h2 className="text-blue-900 text-xl font-bold">Read Posts</h2>
 
-      <div className="flex justify-between mb-3">
-        <select className="bg-slate-300 px-3 rounded-lg" onChange={(e) => setCategory(e.target.value)}>
-          {categories.map((category, index) => (
-            <option key={index} value={category}>{category}</option>
-          ))}
-        </select>
+        <div className="flex justify-between mb-3">
+          <select className="bg-slate-300 px-3 rounded-lg" onChange={(e) => setCategory(e.target.value)}>
+            {categories.map((category, index) => (
+              <option key={index} value={category}>{category}</option>
+            ))}
+          </select>
 
-        <Link to={`/write/${id}`} className="font-inter font-base bg-blue-900 text-white px-4 py-[6px] rounded-lg">Write</Link>
-      </div>
+          <Link to={`/write/${id}`} className="font-inter font-base bg-blue-900 text-white px-4 py-[6px] rounded-lg">Write</Link>
+        </div>
 
-      <div className="flex flex-col gap-3">
-        {posts.map((post, index) => {
-          return (
-            <div key={index} className="bg-slate-300 rounded-lg p-3">
-              <h3 className="font-bold">{post.title}</h3>
-              <div>{post.body}</div>
-              <div>{post.type}</div>
-              <div>
-                {post.keywords.map((keyword, index) => {
-                  return (
-                    <span key={index}>{keyword}</span>
-                  );
-                })}
+        <div className="flex flex-col gap-3">
+          {posts.map((post, index) => {
+            return (
+              <div key={index} className="bg-slate-300 rounded-lg p-3">
+                <h3 className="font-bold">{post.title}</h3>
+                <div>{post.body}</div>
+                <div>{post.type}</div>
+                <div>
+                  {post.keywords.map((keyword, index) => {
+                    return (
+                      <span key={index}>{keyword}</span>
+                    );
+                  })}
+                </div>
+                <div>{new Date(post.timestamp).toLocaleString()}</div>
               </div>
-              <div>{new Date(post.timestamp).toLocaleString()}</div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 };
 
