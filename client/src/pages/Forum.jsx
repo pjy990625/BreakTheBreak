@@ -57,9 +57,10 @@ const Forum = () => {
         <Navbar user={user} />
         <div className="main">
           <h2 className="text-bice-blue text-2xl font-bold mb-5">Forum</h2>
+          
           <div className="flex justify-between mb-3">
-            <input type="text" placeholder="Title" onChange={(e) => setSearchKeyword(e.target.value)} />
-            <select onChange={(e) => setSearchCategory(e.target.value)}>
+            <input className="border-slate-500 border-2 p-1 rounded-lg" type="text" placeholder="Title" onChange={(e) => setSearchKeyword(e.target.value)} />
+            <select className="bg-slate-500 text-white p-1 rounded-lg" onChange={(e) => setSearchCategory(e.target.value)}>
               {searchCategories.map((category, index) => (
                 <option key={index} value={category}>{category}</option>
               ))}

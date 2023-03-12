@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Navbar from '../components/Navbar';
 import "../../src/index.css";
 
 const JobBoard = () => {
-  const { id } = useParams();
   const [posts, setPosts] = useState([]);
 
-  const categories = ["All", "General", "Job"];
-  const [category, setCategory] = useState("All");
+  const categories = ["Hiring", "Seeking"];
+  const [category, setCategory] = useState("Hiring");
 
   const searchCategories = ["Title and Content", "Title", "Content", "Keywords"];
   const [searchCategory, setSearchCategory] = useState("Title and Content");
@@ -44,7 +42,7 @@ const JobBoard = () => {
     const loadPosts = async () => {
       let response;
 
-      response = await fetch(`http://localhost:2023/api/post/search?show=Job&searchMethod=${searchCategory}&searchKeyword=${searchKeyword}`);
+      response = await fetch(`http://localhost:2023/api/post/search?show=${category}&searchMethod=${searchCategory}&searchKeyword=${searchKeyword}`);
 
       const result = await response.json();
       setPosts(result.data);
@@ -59,14 +57,23 @@ const JobBoard = () => {
       <div className="content">
         <Navbar user={user} />
         <div className="main">
-          <h2 className="text-bice-blue text-2xl font-bold mb-5">Job Board</h2>
-
-          <input type="text" placeholder="Title" onChange={(e) => setSearchKeyword(e.target.value)} />
-          <select onChange={(e) => setSearchCategory(e.target.value)}>
-            {searchCategories.map((category, index) => (
-              <option key={index} value={category}>{category}</option>
-            ))}
-          </select>
+          <div className="flex gap-3 mb-5">
+            <h2 className="text-bice-blue text-2xl font-bold">Job Board</h2>
+            <select className="bg-bice-blue text-white px-2 rounded-lg" onChange={(e) => setCategory(e.target.value)}>
+              {categories.map((category, index) => (
+                <option key={index} value={category}>{category}</option>
+              ))}
+            </select>
+          </div>
+          
+          <div className="flex justify-between mb-3">
+            <input className="border-slate-500 border-2 p-1 rounded-lg" type="text" placeholder="Title" onChange={(e) => setSearchKeyword(e.target.value)} />
+            <select className="bg-slate-500 text-white p-1 rounded-lg" onChange={(e) => setSearchCategory(e.target.value)}>
+              {searchCategories.map((category, index) => (
+                <option key={index} value={category}>{category}</option>
+              ))}
+            </select>
+          </div>
 
           <div className="flex flex-col gap-3">
             {posts
