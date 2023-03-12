@@ -13,6 +13,7 @@ router.route("/:id").put(async (req, res) => {
     title: req.body.title,
     body: req.body.content,
     timestamp: req.body.timestamp.timestamp,
+    keywords: req.body.keywords
   });
 
   try {
