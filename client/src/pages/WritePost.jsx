@@ -96,7 +96,7 @@ const WritePost = () => {
         <div className="main">
           <h1 className="text-bice-blue text-2xl font-bold mb-5">Write Post</h1>
           <input className="w-full border-2 border-slate-500 p-1 rounded-lg mb-3" type="text" placeholder="Title" onChange={(e) => setTitle(e.target.value)} />
-          <select className="bg-bice-blue text-white px-3 py-1 rounded-lg" onChange={(e) => setCategory(e.target.value)}>
+          <select className="bg-bice-blue text-white px-3 py-1 rounded-lg mb-3" onChange={(e) => setCategory(e.target.value)}>
             {categories.map((category, index) => (
               <option key={index} value={category}>{category}</option>
             ))}
