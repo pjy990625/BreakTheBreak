@@ -6,6 +6,7 @@ import cookieSession from "cookie-session";
 import "./passport.js";
 import passport from "passport";
 import authRoutes from "./routes/auth.js";
+import keywordRoutes from "./routes/keywordRoutes.js";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/api/post", postRoutes);
+app.use("/api/keyword", keywordRoutes);
 app.use("/auth", authRoutes);
 
 const connectServer = (port) => {

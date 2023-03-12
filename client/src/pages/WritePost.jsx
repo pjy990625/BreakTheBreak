@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -19,7 +19,7 @@ const WritePost = () => {
   const [content, setContent] = useState("");
   const [search, setSearch] = useState("");
   const [selectedKeywords, setSelectedKeywords] = useState([]);
-  const keywords = ["hello", "world", "this", "is", "a", "test", "of", "the", "emergency", "broadcast", "system"];
+  const [keywords, setKeywords] = useState([]);
 
   const post = async () => {
     const timestamp = { timestamp: new Date() };
@@ -36,6 +36,18 @@ const WritePost = () => {
       window.location.href = `/read/${id}`;
     }
   };
+
+  useEffect(() => {
+    const loadKeyWords = async () => {
+      const response = await fetch(`http://localhost:2023/api/keyword/all`);
+      const result = await response.json();
+      return result.data;
+    };
+
+    loadKeyWords().then((loaded) => {
+      setKeywords(loaded);
+    });
+  }, []);
 
   const selectKeyword = (keyword, selecting) => {
     if (selecting) setSelectedKeywords([...selectedKeywords, keyword]);
