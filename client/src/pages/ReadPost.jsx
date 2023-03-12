@@ -51,7 +51,7 @@ const ReadPost = () => {
         {posts
           .sort((p1, p2) => new Date(p2.timestamp) - new Date(p1.timestamp))
           .map((post, index) => {
-          const htmlString = post.body;
+          const htmlString = post.content;
 
           return (
             <div key={index} className="bg-slate-50 shadow-lg rounded-lg p-3">
