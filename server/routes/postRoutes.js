@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import nodemailer from "nodemailer";
 import Post from "../mongodb/models/post.js"
 
 const router = express.Router();
