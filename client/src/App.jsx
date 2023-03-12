@@ -39,6 +39,7 @@ const App = () => {
         <Route path="/write/:id" element={user ? <WritePost /> : <Navigate to="/login" />} />
         <Route path="/forum/:id" element={user ? <Forum /> : <Navigate to="/login" />} />
         <Route path="/trend" element={user ? <Trend /> : <Navigate to="/login" />} />
+        <Route path="/profile/:id" element={user ? <Profile /> : <Navigate to="/login" />} />
       </Routes>
     </BrowserRouter>
   );
