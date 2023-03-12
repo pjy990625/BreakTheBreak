@@ -1,5 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
+import fetch from "node-fetch";
+import cheerio from "cheerio";
 import Post from "../mongodb/models/post.js"
 
 const router = express.Router();
@@ -48,13 +50,43 @@ router.route("/job").get(async (req, res) => {
 });
 
 // get all free posts
-router.route("/free").get(async (req, res) => {
+router.route("/general").get(async (req, res) => {
     try {
-        const freePosts = await Post.find({ type: "free" });
-        res.status(200).json({ success: true, data: freePosts });
+        const generalPosts = await Post.find({ type: "general" });
+        res.status(200).json({ success: true, data: generalPosts });
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: err });
+    }
+});
+
+// get tiobe index
+router.route("/tiobe").get(async (req, res) => {
+    const url = 'https://www.tiobe.com/tiobe-index';
+    try {
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const html = await response.text();
+        const $ = cheerio.load(html);
+        const rankings = [];
+
+        $('#top20.table-striped>tbody>tr').each((i, el) => {
+            const rank = $(el).find('td:nth-child(1)').text().trim();
+            const logoSrc = $(el).find('td:nth-child(4)>img').attr('src');
+            const language = $(el).find('td:nth-child(5)').text().trim();
+            const rating = $(el).find('td:nth-child(6)').text().trim();
+
+            rankings.push({ rank, logoSrc, language, rating });
+        });
+
+        res.json(rankings);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
     }
 });
 
