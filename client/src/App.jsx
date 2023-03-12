@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Dashboard from './pages/Dashboard';
+import ReadPost from './pages/ReadPost';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/" element={<ReadPost />} />
       </Routes>
     </BrowserRouter>
   );
