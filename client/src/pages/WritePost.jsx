@@ -72,7 +72,8 @@ const WritePost = () => {
       <button onClick={post}>Post</button>
       <div>
         <h1>Keywords</h1>
-        <input type="text" placeholder="Keywords" onChange={(e) => setSearch(e.target.value)} />
+        <input type="text" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
+        <button onClick={() => setSelectedKeywords([...selectedKeywords, search])}>Add Your Own!</button>
         <div style={keyword_viewport}>
           {filterKeywords(search).map((keyword, index) => (
             <KeywordBlock key={index} content={keyword} selected={false} onClick={selectKeyword}></KeywordBlock>
