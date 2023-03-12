@@ -7,7 +7,7 @@ const ReadPost = () => {
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
   
-  const categories = ["All", "General", "Job"];
+  const categories = ["All", "General", "Hiring", "Seeking"];
   const [category, setCategory] = useState("All");
 
   const searchCategories = ["Title and Content", "Title", "Content", "Keywords"];

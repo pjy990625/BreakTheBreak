@@ -5,6 +5,7 @@ import WritePost from './pages/WritePost';
 import Trend from "./pages/Trend";
 import Forum from './pages/Forum';
 import JobBoard from "./pages/JobBoard";
+import Profile from './pages/Profile';
 import { Home, Login } from "./pages";
 import { useEffect, useState } from 'react';
 import "./assets/styles/app.css";
@@ -34,19 +35,28 @@ const App = () => {
     getUser();
   }, []);
 
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={user ? <Navigate to={`/${user.id}`} /> : <Login />} />
-        <Route path="/:id" element={user ? <Home /> : <Navigate to="/login" />} />
-        <Route path="/job/:id" element={user ? <JobBoard /> : <Navigate to="/login" />} />
-        <Route path="/read/:id" element={user ? <ReadPost /> : <Navigate to="/login" />} />
-        <Route path="/write/:id" element={user ? <WritePost /> : <Navigate to="/login" />} />
-        <Route path="/forum/:id" element={user ? <Forum /> : <Navigate to="/login" />} />
-        <Route path="/trend" element={user ? <Trend /> : <Navigate to="/login" />} />
-      </Routes>
-    </BrowserRouter>
-  );
+    return (
+      <BrowserRouter>
+        <header className="w-full h-16 flex justify-between items-center bg-slate-50 px-4 border border-b-slate-200">
+          <Link to="/">
+            <span className='font-bold text-blue-900 text-2xl'>BreakTheBreak</span>
+          </Link>
+          <Link to="/login" className="font-inter font-base bg-blue-900 text-slate-50 px-4 py-[6px] rounded-lg">
+            Login
+          </Link>
+        </header>
+  
+        <main className='p-5 w-full min-h-[calc(100vh-64px)]'>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/:id" element={<Home />} />
+            <Route path="/read/:id" element={<ReadPost />} />
+            <Route path="/write/:id" element={<WritePost />} />
+            <Route path="/profile/:id" element={<Profile />} />
+          </Routes>
+        </main>
+      </BrowserRouter>
+    );
 }
 
 export default App;
