@@ -4,7 +4,6 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import KeywordBlock from "../components/keyword_block";
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 const keyword_viewport = {
   width: "200px",
@@ -21,7 +20,7 @@ const WritePost = () => {
   const [content, setContent] = useState("");
   const [search, setSearch] = useState("");
   const [selectedKeywords, setSelectedKeywords] = useState([]);
-  const keywords = ["hello", "world", "this", "is", "a", "test", "of", "the", "emergency", "broadcast", "system"];
+  const [keywords, setKeywords] = useState([]);
 
   useEffect(() => {
     const getUser = () => {
@@ -61,6 +60,18 @@ const WritePost = () => {
     }
   };
 
+  useEffect(() => {
+    const loadKeyWords = async () => {
+      const response = await fetch(`http://localhost:2023/api/keyword/all`);
+      const result = await response.json();
+      return result.data.map((keyword) => keyword.name);
+    };
+
+    loadKeyWords().then((loaded) => {
+      setKeywords(loaded.sort());
+    });
+  }, []);
+
   const selectKeyword = (keyword, selecting) => {
     if (selecting) setSelectedKeywords([...selectedKeywords, keyword]);
     else setSelectedKeywords(selectedKeywords.filter((k) => k !== keyword));
@@ -86,7 +97,8 @@ const WritePost = () => {
         <button onClick={post}>Post</button>
         <div>
           <h1>Keywords</h1>
-          <input type="text" placeholder="Keywords" onChange={(e) => setSearch(e.target.value)} />
+          <input type="text" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
+          <button onClick={() => setSelectedKeywords([...selectedKeywords, search])}>Add Your Own!</button>
           <div style={keyword_viewport}>
             {filterKeywords(search).map((keyword, index) => (
               <KeywordBlock key={index} content={keyword} selected={false} onClick={selectKeyword}></KeywordBlock>
@@ -101,8 +113,8 @@ const WritePost = () => {
             ))}
           </div>
         </div>
+        <span>{title}</span>
       </div>
-      <Footer />
     </>
   )
 }
