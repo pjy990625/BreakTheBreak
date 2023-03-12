@@ -86,10 +86,10 @@ const WritePost = () => {
       <Sidebar />
       <div className="content">
         <Navbar user={user} />
-        <div className="main">
+        <div className="main ml-5">
           <h1 className="text-bice-blue text-2xl font-bold mb-5">Write a Post</h1>
           <div className="flex gab-3">
-            <select className="bg-bice-blue text-white px-3 py-1 rounded-lg mb-3 mr-3" onChange={(e) => setCategory(e.target.value)}>
+            <select className="w-30 bg-bice-blue text-white px-3 py-1 rounded-lg mb-3 mr-3" onChange={(e) => setCategory(e.target.value)}>
               {categories.map((category, index) => (
                 <option key={index} value={category}>{category}</option>
               ))}
@@ -97,12 +97,11 @@ const WritePost = () => {
             <input className="w-full border-2 border-slate-500 p-1 rounded-lg mb-3" type="text" placeholder="Title" onChange={(e) => setTitle(e.target.value)} />
           </div>
           <CKEditor
-            style={{ "height": "500px" }}
             editor={ClassicEditor}
             onChange={(event, editor) => setContent(editor.getData())}
           />
           <div>
-            <h1 className="mt-5 mb-3 text-bice-blue font-semibold text-lg">Keywords</h1>
+            <h1 className="mt-5 mb-3 text-bice-blue font-semibold text-lg">Skill Keywords</h1>
             <input className="border-slate-500 border-2 p-1 rounded-lg mb-3" type="text" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
             <button className="bg-bice-blue text-white p-1 px-2 rounded-lg ml-5" onClick={() => setSelectedKeywords([...selectedKeywords, search])}>Add Your Own!</button>
             <div className="bg-slate-100 border rounded-lg h-fit p-3">
@@ -112,14 +111,14 @@ const WritePost = () => {
             </div>
           </div>
           <div>
-            <h1 className="mt-3 text-bice-blue font-semibold">Selected Keywords</h1>
+            <h1 className="mt-5 mb-3 text-bice-blue font-semibold text-lg">Selected Keywords</h1>
             <div className="bg-slate-100 border rounded-lg h-fit p-3 min-h-[50px]">
               {selectedKeywords.map((keyword, index) => (
                 <KeywordBlock key={index} content={keyword} selected={true} onClick={selectKeyword}></KeywordBlock>
               ))}
             </div>
           </div>
-          <div className="flex flex-col items-center mt-10">
+          <div className="flex flex-col mt-10">
             <button className="mt-3 bg-bice-blue text-white px-2.5 py-2 rounded-lg" onClick={post}>Post</button>
           </div>
         </div>

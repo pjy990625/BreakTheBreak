@@ -9,10 +9,10 @@ const Navbar = ({ user }) => {
     return (
         <div className="navbar">
             {user ? (
-                <ul className="nav-list">
-                    <li className="greeting">Hello {user.displayName}</li>
-                    <li className="nav-listItem" onClick={logout}>Logout</li>
-                </ul>
+                <div className="flex justify-between py-4 px-8">
+                    <div className="greeting">Hello {user.displayName}</div>
+                    <div className="logout" onClick={logout}>Logout</div>
+                </div>
             ) : (<Link to="/login">Login</Link>)}
         </div>
     )

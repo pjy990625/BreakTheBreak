@@ -101,7 +101,7 @@ const Profile = () => {
       <Sidebar />
       <div className="content">
         <Navbar user={user} />
-        <div className="main">
+        <div className="main ml-5">
           <h1 className="text-bice-blue text-2xl font-bold mb-5">Profile</h1>
           <span className="mt-3 text-bice-blue font-semibold">Email Address</span>
           <span className="editable block text-slate-700 font-semibold bg-slate-100 border rounded-lg h-fit p-3">{email}</span>
@@ -124,7 +124,7 @@ const Profile = () => {
               ))}
             </div>
           </div>
-          <div className="flex flex-col items-center mt-10">
+          <div className="flex flex-col mt-10">
             <button className="editable mt-3 bg-bice-blue text-white p-2 px-3  rounded-lg" onClick={() => toggleEdit(true)}>Edit</button>
             <button className="savable hidden mt-3 bg-bice-blue text-white px-2.5 py-2  rounded-lg" onClick={() => toggleEdit(false)}>Save</button>
           </div>

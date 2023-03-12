@@ -16,38 +16,27 @@ body {
     padding: 20px;
 }
 
-.navbar {
-    height: 60px;
-    background-color: #0e6ba8;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
 .logo {
     font-size: 20px;
     font-weight: bold;
     margin-right: 40%;
 }
 
-.nav-list {
-    display: flex;
-    align-items: center;
-    list-style: none;
-}
-
-.nav-listItem {
-    margin-left: 20px;
-    left: 0;
-    font-weight: 500;
-    cursor: pointer;
+.navbar {
+    height: 60px;
+    background-color: #0e6ba8;
+    color: white;
 }
 
 .greeting {
-    margin-right: 850px;
     font-weight: 600;
     font-size: large;
+    cursor: pointer;
+}
+
+.logout {
+    font-weight: 500;
+    justify-self: end;
     cursor: pointer;
 }
 
@@ -57,4 +46,8 @@ body {
     border-radius: 50%;
     object-fit: cover;
     background-color: white;
+}
+
+.ck-editor__editable_inline {
+    min-height: 300px;
 }
