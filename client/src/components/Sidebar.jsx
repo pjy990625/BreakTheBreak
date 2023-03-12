@@ -25,31 +25,31 @@ const Sidebar = () => {
             display: 'Job Board',
             icon: <img className='icons' src={JobIcon} alt="" />,
             to: `/job/${id}`,
-            section: 'started'
+            section: ''
         },
         {
             display: 'Forum',
             icon: <img className='icons' src={ForumIcon} alt="" />,
             to: `/forum/${id}`,
-            section: 'calendar'
+            section: ''
         },
         {
             display: 'Write a Post',
             icon: <img className='icons' src={WriteIcon} alt="" />,
             to: `/write/${id}`,
-            section: 'calendar'
+            section: ''
         },
         {
             display: 'Market Trends',
             icon: <img className='icons' src={MarketIcon} alt="" />,
             to: `/trend`,
-            section: 'user'
+            section: ''
         },
         {
             display: 'Profile',
             icon: <img className='icons' src={ProfileIcon} alt="" />,
             to: `/profile/${id}`,
-            section: 'order'
+            section: ''
         },
     ]
 

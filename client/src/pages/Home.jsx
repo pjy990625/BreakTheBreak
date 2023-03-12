@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Navbar from '../components/Navbar';
 import "../../src/index.css";
 import "../assets/styles/app.css";
 
 const Home = () => {
-  const { id } = useParams();
   const [posts, setPosts] = useState([]);
 
-  const categories = ["All", "General", "Hiring", "Seeking"];
   const [category, setCategory] = useState("All");
 
   const searchCategories = ["Title and Content", "Title", "Content", "Keywords"];
@@ -61,7 +58,6 @@ const Home = () => {
         <Navbar user={user} />
         <div className="main">
           <h2 className="text-bice-blue text-2xl font-bold mb-5">Home</h2>
-
           <div className="flex justify-between mb-3">
             <input className="border-slate-500 border-2 p-1 rounded-lg" type="text" placeholder="Search" onChange={(e) => setSearchKeyword(e.target.value)} />
             <select className="bg-slate-500 text-white p-1 rounded-lg" onChange={(e) => setSearchCategory(e.target.value)}>

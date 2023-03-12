@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Navbar from '../components/Navbar';
 import "../../src/index.css";
 
 const Forum = () => {
-  const { id } = useParams();
   const [posts, setPosts] = useState([]);
 
-  const categories = ["All", "General", "Job"];
   const [category, setCategory] = useState("All");
 
   const searchCategories = ["Title and Content", "Title", "Content", "Keywords"];
@@ -60,13 +57,14 @@ const Forum = () => {
         <Navbar user={user} />
         <div className="main">
           <h2 className="text-bice-blue text-2xl font-bold mb-5">Forum</h2>
-          <input type="text" placeholder="Title" onChange={(e) => setSearchKeyword(e.target.value)} />
-          <select onChange={(e) => setSearchCategory(e.target.value)}>
-            {searchCategories.map((category, index) => (
-              <option key={index} value={category}>{category}</option>
-            ))}
-          </select>
-
+          <div className="flex justify-between mb-3">
+            <input type="text" placeholder="Title" onChange={(e) => setSearchKeyword(e.target.value)} />
+            <select onChange={(e) => setSearchCategory(e.target.value)}>
+              {searchCategories.map((category, index) => (
+                <option key={index} value={category}>{category}</option>
+              ))}
+            </select>
+          </div>
           <div className="flex flex-col gap-3">
             {posts
               .sort((p1, p2) => new Date(p2.timestamp) - new Date(p1.timestamp))

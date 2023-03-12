@@ -45,7 +45,7 @@ const Trend = () => {
       <div className="content">
         <Navbar user={user} />
         <div className="main">
-          <h2 className="text-bice-blue text-2xl font-bold mb-5">Tiobe Index</h2>
+          <h2 className="text-bice-blue text-2xl font-bold mb-5">Market Trends</h2>
           <table className="w-full">
             <thead className="bg-bice-blue text-white">
               <tr className="text-left">
