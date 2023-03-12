@@ -59,14 +59,14 @@
 }
 
 .sidebar-profile {
-    width: 90%;
+    width: 85%;
     height: 80px;
     border-radius: 20px;
     background-color: #f3f3f3;
     display: flex;
     align-items: center;
     margin: auto;
-    margin-top: 300px;
+    margin-top: 240px;
 }
 
 .list {
