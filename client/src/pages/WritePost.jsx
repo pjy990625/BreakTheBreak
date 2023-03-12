@@ -45,7 +45,7 @@ const WritePost = () => {
     };
 
     loadKeyWords().then((loaded) => {
-      setKeywords(loaded);
+      setKeywords(loaded.sort());
     });
   }, []);
 
@@ -87,6 +87,7 @@ const WritePost = () => {
           ))}
         </div>
       </div>
+      <span>{title}</span>
     </div>
   )
 }
