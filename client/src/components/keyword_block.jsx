@@ -10,8 +10,9 @@ const keyword_styles = {
 }
 
 const KeywordBlock = (props) => {
+
     return (
-        <div style={keyword_styles} onClick={(e) => props.onClick(props.content)}>
+        <div style={keyword_styles} onClick={() => props.onClick(props.content, !props.selected)}>
             <span>{props.content}</span>
         </div>
     )

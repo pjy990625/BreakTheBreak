@@ -12,8 +12,8 @@ router.route("/:id").put(async (req, res) => {
     type: "free",
     title: req.body.title,
     body: req.body.content,
+    keywords: req.body.selectedKeywords,
     timestamp: req.body.timestamp.timestamp,
-    keywords: req.body.keywords
   });
 
   try {
