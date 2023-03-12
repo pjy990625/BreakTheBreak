@@ -4,6 +4,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import KeywordBlock from "../components/keyword_block";
 import Navbar from '../components/Navbar';
+import "../index.css";
 
 const keyword_viewport = {
   width: "200px",
@@ -56,7 +57,7 @@ const WritePost = () => {
 
     await response.json();
     if (response.status === 200) {
-      window.location.href = `/read/${id}`;
+      window.location.href = `/${id}`;
     }
   };
 
@@ -85,37 +86,41 @@ const WritePost = () => {
   };
 
   return (
-    <>
-      <Navbar user={user} />
-      <div className="main">
-        <h1>Write Post</h1>
-        <input type="text" placeholder="Title" onChange={(e) => setTitle(e.target.value)} />
-        <CKEditor
-          editor={ClassicEditor}
-          onChange={(event, editor) => setContent(editor.getData())}
-        />
-        <button onClick={post}>Post</button>
-        <div>
-          <h1>Keywords</h1>
-          <input type="text" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
-          <button onClick={() => setSelectedKeywords([...selectedKeywords, search])}>Add Your Own!</button>
-          <div style={keyword_viewport}>
-            {filterKeywords(search).map((keyword, index) => (
-              <KeywordBlock key={index} content={keyword} selected={false} onClick={selectKeyword}></KeywordBlock>
-            ))}
-          </div>
+    <div className="max-w-3xl">
+      <h1 className="text-bice-blue text-2xl font-bold mb-5">Write Post</h1>
+      <input className="w-full border-2 border-slate-500 p-1 rounded-lg mb-3" type="text" placeholder="Title" onChange={(e) => setTitle(e.target.value)} />
+      <CKEditor
+        style={{ "height": "500px" }}
+        editor={ ClassicEditor }
+        onChange={( event, editor ) => setContent(editor.getData())}
+      />
+
+      <div>
+        <h1 className="mt-5 mb-3 text-bice-blue font-semibold text-lg">Keywords</h1>
+        <input className="border-slate-500 border-2 p-1 rounded-lg mb-3" type="text" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
+        <button className="bg-bice-blue text-white p-1 px-2 rounded-lg ml-5" onClick={() => setSelectedKeywords([...selectedKeywords, search])}>Add Your Own!</button>
+        <div className="bg-slate-100 border rounded-lg h-fit p-3">
+          {filterKeywords(search).map((keyword, index) => (
+            <KeywordBlock style={{ color: 'lightgray' }} key={index} content={keyword} selected={false} onClick={selectKeyword} />
+          ))}
         </div>
-        <div>
-          <h1>Selected Keywords</h1>
-          <div style={keyword_viewport}>
-            {selectedKeywords.map((keyword, index) => (
-              <KeywordBlock key={index} content={keyword} selected={true} onClick={selectKeyword}></KeywordBlock>
-            ))}
-          </div>
+      </div>
+      <div>
+        <h1 className="mt-3 text-bice-blue font-semibold">Selected Keywords</h1>
+        <div className="bg-slate-100 border rounded-lg h-fit p-3 min-h-[50px]">
+          {selectedKeywords.map((keyword, index) => (
+            <KeywordBlock key={index} content={keyword} selected={true} onClick={selectKeyword}></KeywordBlock>
+          ))}
         </div>
         <span>{title}</span>
       </div>
+<<<<<<< HEAD
     </>
+=======
+      <button className="mt-3 bg-bice-blue text-white p-1 px-2 rounded-lg" onClick={post}>Post</button>
+      <span>{title}</span>
+    </div>
+>>>>>>> 048a33d5a92214bff553cbbbbda3b3ae7ee8b294
   )
 }
 
