@@ -58,11 +58,6 @@ const WritePost = () => {
           ))}
         </div>
       </div>
-      <div>
-        <h1>Preview</h1>
-        <h2>{title}</h2>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
-      </div>
     </div>
   )
 }
