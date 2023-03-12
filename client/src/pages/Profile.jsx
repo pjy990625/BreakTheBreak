@@ -101,11 +101,11 @@ const Profile = () => {
       <Sidebar />
       <div className="content">
         <Navbar user={user} />
-        <div className="main">
+        <div className="main ml-5">
           <h1 className="text-bice-blue text-2xl font-bold mb-5">Profile</h1>
           <span className="mt-3 text-bice-blue font-semibold">Email Address</span>
           <span className="editable block text-slate-700 font-semibold bg-slate-100 border rounded-lg h-fit p-3">{email}</span>
-          <input className="savable hidden border-2 border-slate-700 rounded-lg" type="text" placeholder="Email Address" />
+          <input className="savable hidden border-slate-500 border-2 p-1 rounded-lg mb-3" type="text" placeholder="Email Address" />
           <div className="savable hidden">
             <h1 className="mt-3 text-bice-blue font-semibold">Keywords</h1>
             <input className="border-slate-500 border-2 p-1 rounded-lg mb-3" type="text" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
@@ -124,9 +124,9 @@ const Profile = () => {
               ))}
             </div>
           </div>
-          <div className="flex gap-3">
-            <button className="editable mt-3 bg-bice-blue text-white p-1 px-2 rounded-lg" onClick={() => toggleEdit(true)}>Edit</button>
-            <button className="savable hidden mt-3 bg-bice-blue text-white p-1 px-2 rounded-lg" onClick={() => toggleEdit(false)}>Save</button>
+          <div className="flex flex-row-reverse gap-3">
+            <button className="editable w-20 mt-3 bg-bice-blue text-white p-1 px-2 rounded-lg" onClick={() => toggleEdit(true)}>Edit</button>
+            <button className="savable w-20 hidden mt-3 bg-bice-blue text-white p-1 px-2 rounded-lg" onClick={() => toggleEdit(false)}>Save</button>
           </div>
         </div>
       </div>
