@@ -8,30 +8,23 @@ const ReadPost = () => {
   const categories = ["All", "Free", "Job"];
   const [category, setCategory] = useState("All");
 
+  const searchCategories = ["Title and Content", "Title", "Content", "Keywords"];
+  const [searchCategory, setSearchCategory] = useState("Title and Content");
+
+  const [searchKeyword, setSearchKeyword] = useState("");
+
   useEffect(() => {
     const loadPosts = async () => {
       let response;
 
-      switch (category) {
-        case "All":
-          response = await fetch(`http://localhost:2023/api/post`);
-          break;
-        case "Free":
-          response = await fetch(`http://localhost:2023/api/post/free`);
-          break;
-        case "Job":
-          response = await fetch(`http://localhost:2023/api/post/job`);
-          break;
-        default:
-          response = null;
-      }
+      response = await fetch(`http://localhost:2023/api/post/search?show=${category}&searchMethod=${searchCategory}&searchKeyword=${searchKeyword}`);
 
       const result = await response.json();
       setPosts(result.data);
     };
 
     loadPosts();
-  }, [category]);
+  }, [category, searchCategory, searchKeyword]);
   
   return (
     <div className="max-w-3xl">
@@ -43,6 +36,12 @@ const ReadPost = () => {
             <option key={index} value={category}>{category}</option>
           ))}
         </select>
+      <input type="text" placeholder="Title" onChange={(e) => setSearchKeyword(e.target.value)} />
+      <select onChange={(e) => setSearchCategory(e.target.value)}>
+        {searchCategories.map((category, index) => (
+          <option key={index} value={category}>{category}</option>
+        ))}
+      </select>
 
         <Link to={`/write/${id}`} className="font-inter font-base bg-blue-900 text-white px-4 py-[6px] rounded-lg">Write</Link>
       </div>

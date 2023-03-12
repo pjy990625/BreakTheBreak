@@ -23,7 +23,7 @@ const WritePost = () => {
 
   const post = async () => {
     const timestamp = { timestamp: new Date() };
-    const response = await fetch(`http://localhost:2023/api/post/${id}`, {
+    const response = await fetch(`http://localhost:2023/api/post/write/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"

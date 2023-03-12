@@ -4,7 +4,7 @@ import Post from "../mongodb/models/post.js"
 
 const router = express.Router();
 
-router.route("/:id").put(async (req, res) => {
+router.route("/write/:id").put(async (req, res) => {
 
   const newPost = new Post({
     _id: new mongoose.Types.ObjectId(),
@@ -25,33 +25,27 @@ router.route("/:id").put(async (req, res) => {
 });
 
 // get all posts
-router.route("/").get(async (req, res) => {
+router.route("/search").get(async (req, res) => {
+    const show = req.query.show;
+    const searchMethod = req.query.searchMethod;
+    const searchKeyword = req.query.searchKeyword;
+    const method = { type: { "$regex": (show === "All" ? "" : req.query.show.toLowerCase()), "$options": "i" } };
+    switch (searchMethod) {
+        case "Title":
+            method.title = { "$regex": searchKeyword, "$options": "i" };
+            break;
+        case "Content":
+            method.body = { "$regex": searchKeyword, "$options": "i" };
+            break;
+        case "Keywords":
+            method.keywords = { "$regex": searchKeyword, "$options": "i" };
+            break;
+        default:
+            method.$or = [{ title: { "$regex": searchKeyword, "$options": "i" }}, { body: {"$regex": searchKeyword, "$options": "i" }}];
+    }
     try {
-        const allPosts = await Post.find();
+        const allPosts = await Post.find(method);
         res.status(200).json({ success: true, data: allPosts });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ success: false, message: err });
-    }
-});
-
-
-// get all job posts
-router.route("/job").get(async (req, res) => {
-    try {
-        const jobPosts = await Post.find({ type: "job" });
-        res.status(200).json({ success: true, data: jobPosts });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ success: false, message: err });
-    }
-});
-
-// get all free posts
-router.route("/free").get(async (req, res) => {
-    try {
-        const freePosts = await Post.find({ type: "free" });
-        res.status(200).json({ success: true, data: freePosts });
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: err });
