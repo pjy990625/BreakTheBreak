@@ -106,7 +106,6 @@ const WritePost = () => {
             editor={ClassicEditor}
             onChange={(event, editor) => setContent(editor.getData())}
           />
-
           <div>
             <h1 className="mt-5 mb-3 text-bice-blue font-semibold text-lg">Keywords</h1>
             <input className="border-slate-500 border-2 p-1 rounded-lg mb-3" type="text" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
@@ -124,13 +123,10 @@ const WritePost = () => {
                 <KeywordBlock key={index} content={keyword} selected={true} onClick={selectKeyword}></KeywordBlock>
               ))}
             </div>
-            <span>{title}</span>
           </div>
           <button className="mt-3 bg-bice-blue text-white p-1 px-2 rounded-lg" onClick={post}>Post</button>
-          <span>{title}</span>
         </div>
-      </div>
-    </>
+      </div></>
   )
 }
 

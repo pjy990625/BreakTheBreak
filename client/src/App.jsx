@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes, Navigate, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import ReadPost from './pages/ReadPost';
 import WritePost from './pages/WritePost';
 import Trend from "./pages/Trend";
