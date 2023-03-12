@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import Sidebar from "../components/Sidebar";
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import "../../src/index.css";
+import "../assets/styles/app.css";
 
 const Home = () => {
   const { id } = useParams();
@@ -32,13 +33,15 @@ const Home = () => {
 
   return (
     <>
-      <Navbar user={user} />
-      <div className="main">
-        <h1 className=''>Home</h1>
-        <Link to={id ? `/read/${id}` : "login"}>Read</Link>
-        <Link to={id ? `/write/${id}` : "login"}>Write</Link>
+      <Sidebar />
+      <div className="content">
+        <Navbar user={user} />
+        <div className="main">
+          <h1 className=''>Home</h1>
+          <Link to={id ? `/read/${id}` : "login"}>Read</Link>
+          <Link to={id ? `/write/${id}` : "login"}>Write</Link>
+        </div>
       </div>
-      <Footer />
     </>
   )
 }

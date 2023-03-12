@@ -33,14 +33,12 @@ const App = () => {
 
     return (
         <BrowserRouter>
-            {/* <main className='p-5 w-full min-h-[calc(100vh-64px)]'> */}
                 <Routes>
                     <Route path="/login" element={user ? <Navigate to={`/${user.id}`} /> : <Login />} />
                     <Route path="/:id" element={user ? <Home /> : <Navigate to="/login" />} />
                     <Route path="/read/:id" element={user ? <ReadPost /> : <Navigate to="/login" />} />
                     <Route path="/write/:id" element={user ? <WritePost /> : <Navigate to="/login" />} />
                 </Routes>
-            {/* </main> */}
         </BrowserRouter>
     );
 }
