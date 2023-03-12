@@ -114,13 +114,9 @@ const WritePost = () => {
         </div>
         <span>{title}</span>
       </div>
-<<<<<<< HEAD
-    </>
-=======
       <button className="mt-3 bg-bice-blue text-white p-1 px-2 rounded-lg" onClick={post}>Post</button>
       <span>{title}</span>
     </div>
->>>>>>> 048a33d5a92214bff553cbbbbda3b3ae7ee8b294
   )
 }
 
