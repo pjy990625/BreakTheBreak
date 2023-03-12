@@ -12,14 +12,14 @@ const Post = new mongoose.Schema({
     },
     type: {
         type: String,
-        enum: ["free", "job"],
+        enum: ["general", "job"],
         required: true
     },
     title: {
         type: String,
         required: true
     },
-    body: {
+    content: {
         type: String,
         required: true
     },

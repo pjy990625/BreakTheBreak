@@ -9,9 +9,9 @@ router.route("/write/:id").put(async (req, res) => {
   const newPost = new Post({
     _id: new mongoose.Types.ObjectId(),
     uid: req.params.id,
-    type: "free",
+    type: "general",
     title: req.body.title,
-    body: req.body.content,
+    content: req.body.content,
     keywords: req.body.selectedKeywords,
     timestamp: req.body.timestamp.timestamp,
   });
