@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import DOMPurify from 'dompurify';
 
 const ReadPost = () => {
   const { id } = useParams();
@@ -35,33 +36,42 @@ const ReadPost = () => {
   
   return (
     <div className="max-w-3xl">
-      <h2 className="text-blue-900 text-xl font-bold">Read Posts</h2>
+      <h2 className="text-bice-blue text-2xl font-bold mb-5">Read Posts</h2>
       
-      <div className="flex justify-between mb-3">
-        <select className="bg-slate-300 px-3 rounded-lg" onChange={(e) => setCategory(e.target.value)}>
+      <div className="flex justify-between mb-5">
+        <select className="bg-bice-blue text-white px-3 py-1 rounded-lg" onChange={(e) => setCategory(e.target.value)}>
           {categories.map((category, index) => (
             <option key={index} value={category}>{category}</option>
           ))}
         </select>
 
-        <Link to={`/write/${id}`} className="font-inter font-base bg-blue-900 text-white px-4 py-[6px] rounded-lg">Write</Link>
+        <Link to={`/write/${id}`} className="font-inter font-base bg-bice-blue text-white px-3 py-1 rounded-lg">Write</Link>
       </div>
       
       <div className="flex flex-col gap-3">
-        {posts.map((post, index) => {
+        {posts
+          .sort((p1, p2) => new Date(p2.timestamp) - new Date(p1.timestamp))
+          .map((post, index) => {
+          const htmlString = post.body;
+
           return (
-            <div key={index} className="bg-slate-300 rounded-lg p-3">
-              <h3 className="font-bold">{post.title}</h3>
-              <div>{post.body}</div>
-              <div>{post.type}</div>
-              <div>
+            <div key={index} className="bg-slate-50 shadow-lg rounded-lg p-3">
+              <div className="flex justify-between">
+                <div className="flex gap-5">
+                  <h3 className="font-bold text-bice-blue text-lg mb-3">{post.title}</h3>
+                  <div className="mb-3 mt-1 text-sm px-1 rounded-lg text-slate-500 font-semibold">{post.type.toUpperCase()}</div>
+                </div>
+                <div className="text-sm mt-1 font-semibold text-slate-500">{new Date(post.timestamp).toLocaleString()}</div>
+              </div>
+              
+              <div className="mb-3" dangerouslySetInnerHTML={{ __html: htmlString }} />
+              <div className="flex gap-3">
                 {post.keywords.map((keyword, index) => {
                   return (
-                    <span key={index}>{keyword}</span>
+                    <span className="text-sm font-semibold text-slate-500 p-1 rounded-lg" key={index}>#{keyword}</span>
                   );
                 })}
               </div>
-              <div>{new Date(post.timestamp).toLocaleString()}</div>
             </div>
           );
         })}
