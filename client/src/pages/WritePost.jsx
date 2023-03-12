@@ -125,8 +125,6 @@ const WritePost = () => {
           <button className="mt-3 bg-bice-blue text-white p-1 px-2 rounded-lg" onClick={post}>Post</button>
           <span>{title}</span>
         </div>
-      </div>
-    </>
   )
 }
 
