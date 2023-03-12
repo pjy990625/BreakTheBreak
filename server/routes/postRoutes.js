@@ -70,7 +70,7 @@ async function sendEmail(recipient, title, content) {
     secure: true,
     auth: {
       user: 'dkdlenlggg2@hans.best',
-      pass: 'qlalfqjsgh12'
+      pass: 'hackathone2023'
     },
     tls: { rejectUnauthorized: false }
   });
