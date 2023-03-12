@@ -32,15 +32,18 @@ const WritePost = () => {
     });
 
     await response.json();
-    console.log(response);
+    if (response.status === 200) {
+      window.location.href = `/read/${id}`;
+    }
   };
 
-  const selectKeyword = (keyword) => {
-    setSelectedKeywords([...selectedKeywords, keyword]);
-    filterKeyword(search);
+  const selectKeyword = (keyword, selecting) => {
+    if (selecting) setSelectedKeywords([...selectedKeywords, keyword]);
+    else setSelectedKeywords(selectedKeywords.filter((k) => k !== keyword));
+    filterKeywords(search);
   };
 
-  const filterKeyword = (search) => {
+  const filterKeywords = (search) => {
     return keywords.filter((keyword) => {
       return keyword.toLowerCase().includes(search.toLowerCase()) && !selectedKeywords.includes(keyword);
     });
@@ -59,8 +62,8 @@ const WritePost = () => {
         <h1>Keywords</h1>
         <input type="text" placeholder="Keywords" onChange={(e) => setSearch(e.target.value)} />
         <div style={keyword_viewport}>
-          {filterKeyword(search).map((keyword, index) => (
-            <KeywordBlock key={index} selected={false} content={keyword} onClick={selectKeyword}></KeywordBlock>
+          {filterKeywords(search).map((keyword, index) => (
+            <KeywordBlock key={index} content={keyword} selected={false} onClick={selectKeyword}></KeywordBlock>
           ))}
         </div>
       </div>
@@ -68,7 +71,7 @@ const WritePost = () => {
         <h1>Selected Keywords</h1>
         <div style={keyword_viewport}>
           {selectedKeywords.map((keyword, index) => (
-            <KeywordBlock key={index} selected={true} content={keyword}></KeywordBlock>
+            <KeywordBlock key={index} content={keyword} selected={true} onClick={selectKeyword}></KeywordBlock>
           ))}
         </div>
       </div>
