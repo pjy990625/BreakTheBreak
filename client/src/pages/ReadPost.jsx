@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 
 const ReadPost = () => {
   const { id } = useParams();
+  const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
 
   const categories = ["All", "General", "Job"];
@@ -101,8 +102,8 @@ const ReadPost = () => {
               );
             })}
         </div>
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 };

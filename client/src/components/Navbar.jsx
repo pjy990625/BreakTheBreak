@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import LoginImage from '../assets/img/user.png'
 
 const Navbar = ({ user }) => {
@@ -9,7 +9,7 @@ const Navbar = ({ user }) => {
 
     return (
         <div className="navbar">
-            <span className="logo">BreakTheBreak</span>
+            <a className="logo" href="http://localhost:3000/:id">BreakTheBreak</a>
             {user ? (
                 <ul className="list">
                     <li className="listItem">
