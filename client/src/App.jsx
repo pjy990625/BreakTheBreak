@@ -1,10 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate, Link } from "react-router-dom";
 import ReadPost from './pages/ReadPost';
 import WritePost from './pages/WritePost';
 import Trend from "./pages/Trend";
 import Forum from './pages/Forum';
 import JobBoard from "./pages/JobBoard";
+import Profile from './pages/Profile';
 import { Home, Login } from "./pages";
 import { useEffect, useState } from 'react';
 import "./assets/styles/app.css";

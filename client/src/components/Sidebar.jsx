@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import LoginImage from '../assets/img/user.png'
 import HomeIcon from '../assets/img/home.png'
 import JobIcon from '../assets/img/job.png'
@@ -12,19 +12,19 @@ const sidebarNavItems = [
     {
         display: 'Home',
         icon: <img className='icons' src={HomeIcon} alt="" />,
-        to: '/read',
+        to: '/:id',
         section: ''
     },
     {
         display: 'Job Board',
         icon: <img className='icons' src={JobIcon} alt="" />,
-        to: '/write/:id',
+        to: '/job/:id',
         section: 'started'
     },
     {
         display: 'Forum',
         icon: <img className='icons' src={ForumIcon} alt="" />,
-        to: '/forum',
+        to: '/forum/:id',
         section: 'calendar'
     },
     {
@@ -43,11 +43,7 @@ const sidebarNavItems = [
 
 const Sidebar = () => {
     const [user, setUser] = useState(null);
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [stepHeight, setStepHeight] = useState(0);
     const sidebarRef = useRef();
-    const indicatorRef = useRef();
-    const location = useLocation();
 
     useEffect(() => {
         const getUser = () => {
@@ -71,46 +67,23 @@ const Sidebar = () => {
         getUser();
     }, []);
 
-    useEffect(() => {
-        setTimeout(() => {
-            const sidebarItem = sidebarRef.current.querySelector('.sidebar__menu__item');
-            indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
-            setStepHeight(sidebarItem.clientHeight);
-        }, 50);
-    }, []);
-
-    // change active index
-    useEffect(() => {
-        const curPath = window.location.pathname.split('/')[1];
-        const activeItem = sidebarNavItems.findIndex(item => item.section === curPath);
-        setActiveIndex(curPath.length === 0 ? 0 : activeItem);
-    }, [location]);
-
     return <div className='sidebar'>
         <div className="sidebar__logo">
             <a href="http://localhost:3000/:id">BreakTheBreak</a>
         </div>
         <div ref={sidebarRef} className="sidebar__menu">
-            <div
-                ref={indicatorRef}
-                className="sidebar__menu__indicator"
-                style={{
-                    transform: `translateX(-50%) translateY(${activeIndex * stepHeight}px)`
-                }}
-            ></div>
-            {
-                sidebarNavItems.map((item, index) => (
-                    <Link to={item.to} key={index}>
-                        <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
-                            <div className="sidebar__menu__item__icon">
-                                {item.icon}
-                            </div>
-                            <div className="sidebar__menu__item__text">
-                                {item.display}
-                            </div>
+            {sidebarNavItems.map((item, index) => (
+                <Link to={item.to} key={index}>
+                    <div className={"sidebar__menu__item"}>
+                        <div className="sidebar__menu__item__icon">
+                            {item.icon}
                         </div>
-                    </Link>
-                ))
+                        <div className="sidebar__menu__item__text">
+                            {item.display}
+                        </div>
+                    </div>
+                </Link>
+            ))
             }
             <div className='sidebar-profile'>
                 {user ? (
