@@ -119,7 +119,9 @@ const WritePost = () => {
               ))}
             </div>
           </div>
-          <button className="mt-3 bg-bice-blue text-white p-1 px-2 rounded-lg" onClick={post}>Post</button>
+          <div className="flex flex-col items-center mt-10">
+            <button className="mt-3 bg-bice-blue text-white px-2.5 py-2 rounded-lg" onClick={post}>Post</button>
+          </div>
         </div>
       </div></>
   )
