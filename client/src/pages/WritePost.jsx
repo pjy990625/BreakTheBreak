@@ -41,7 +41,7 @@ const WritePost = () => {
     const loadKeyWords = async () => {
       const response = await fetch(`http://localhost:2023/api/keyword/all`);
       const result = await response.json();
-      return result.data;
+      return result.data.map((keyword) => keyword.name);
     };
 
     loadKeyWords().then((loaded) => {
