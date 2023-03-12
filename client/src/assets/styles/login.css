@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #cfe7b6;
+    background-color: #a6e1fa;
 }
 
 .wrapper {
@@ -21,62 +21,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: end;
-    background-color: #91C859;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-}
-
-.login .left img {
-    width: 65%;
-    height: 65%;
-}
-
-.copyright {
-    margin-bottom: 40px;
-    font-size: 7px;
-    color: #63883D;
-}
-
-.intro {
-    width: 50%;
-    margin-right: 30%;
-    margin-bottom: 40px;
-}
-
-.intro h1 {
-    color: #2E352F;
-    font-size: 10px;
-    font-weight: bold;
-    margin-top: 40px;
-    margin-bottom: 5px;
-}
-
-.intro p {
-    font-size: 10px;
-    color: #63883D;
-    margin-bottom: 5px;
-}
-
-.intro button {
-    font-size: 8px;
-    padding: 5px 5px;
-    border-radius: 5px;
-    border-color: #2E352F;
-    background-color: #63883D;
-    color: white;
-}
-
-.login .right {
-    height: 100%;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
     background-color: white;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
 .companyLogo {
@@ -88,20 +36,21 @@
 
 .logoName {
     color: #2E352F;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
 }
 
 .logoImg {
-    width: 30%;
-    height: 30%;
-    margin-bottom: 20px;
+    width: 20%;
+    height: 20%;
+    margin-bottom: 10px;
+    margin-left: 5px;
 }
 
 .loginTitle {
-    margin-bottom: 40px;
-    color: #91C859;
-    font-size: 40px;
+    margin-bottom: 45px;
+    color: #0e6ba8;
+    font-size: 45px;
     font-weight: bold;
 }
 
@@ -141,10 +90,6 @@
     background-color: #171515;
 }
 
-.linkedin {
-    background-color: #0e76a8;
-}
-
 .icon {
     width: 20px;
     height: 20px;
@@ -157,6 +102,53 @@
     background-color: #171515;
 }
 
-.li {
-    background-color: #0e76a8;
+.login .right {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    background-color: #0e6ba8;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.login .right img {
+    width: 70%;
+    height: 70%;
+}
+
+.copyright {
+    margin-bottom: 40px;
+    font-size: 7px;
+    color: #a6e1fa;
+}
+
+.intro {
+    width: 50%;
+    margin-right: 30%;
+}
+
+.intro h1 {
+    color: #00072d;
+    font-size: 10px;
+    font-weight: bold;
+    margin-top: 40px;
+    margin-bottom: 5px;
+}
+
+.intro p {
+    font-size: 10px;
+    color: #a6e1fa;
+    margin-bottom: 5px;
+}
+
+.intro button {
+    font-size: 3px;
+    padding: 5px 5px;
+    border-radius: 5px;
+    border-color: #2E352F;
+    background-color: #001c55;
+    color: white;
 }
