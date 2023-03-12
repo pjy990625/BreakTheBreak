@@ -2,6 +2,9 @@ import React from 'react';
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import ReadPost from './pages/ReadPost';
 import WritePost from './pages/WritePost';
+import Trend from "./pages/Trend";
+import Forum from './pages/Forum';
+import JobBoard from "./pages/JobBoard";
 import { Home, Login } from "./pages";
 import { useEffect, useState } from 'react';
 
@@ -45,8 +48,11 @@ const App = () => {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/:id" element={<Home />} />
+            <Route path="/forum/:id" element={<Forum />} />
+            <Route path="/job/:id" element={<JobBoard />} />
             <Route path="/read/:id" element={<ReadPost />} />
             <Route path="/write/:id" element={<WritePost />} />
+            <Route path="/trend" element={<Trend />} />
           </Routes>
         </main>
       </BrowserRouter>
