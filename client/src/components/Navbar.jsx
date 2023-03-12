@@ -10,7 +10,7 @@ const Navbar = ({ user }) => {
         <div className="navbar">
             {user ? (
                 <div className="flex justify-between py-4 px-8">
-                    <div className="greeting">Hello {user.displayName}</div>
+                    <div className="greeting">Hello, {user.displayName}</div>
                     <div className="logout" onClick={logout}>Logout</div>
                 </div>
             ) : (<Link to="/login">Login</Link>)}
