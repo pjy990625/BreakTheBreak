@@ -28,7 +28,7 @@ const WritePost = () => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ title, content, timestamp }),
+      body: JSON.stringify({ title, content, timestamp, selectedKeywords }),
     });
 
     await response.json();
