@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-const App = () => {
+const WritePost = () => {
 
   const { id } = useParams();
 
@@ -39,4 +39,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default WritePost;
