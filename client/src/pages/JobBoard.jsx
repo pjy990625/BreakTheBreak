@@ -28,7 +28,7 @@ const JobBoard = () => {
         },
       }).then((response) => {
         if (response.status === 200) return response.json();
-        throw new Error("authentication has been failed!");
+        throw new Error("authentication has failed!");
       }).then((resObject) => {
         setUser(resObject.user);
       }).catch((err) => {

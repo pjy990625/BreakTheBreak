@@ -25,7 +25,7 @@ const Profile = () => {
         },
       }).then((response) => {
         if (response.status === 200) return response.json();
-        throw new Error("authentication has been failed!");
+        throw new Error("authentication has failed!");
       }).then((resObject) => {
         setUser(resObject.user);
       }).catch((err) => {
@@ -71,7 +71,6 @@ const Profile = () => {
   };
 
   const saveProfile = async () => {
-    console.log(email);
     await fetch(`http://localhost:2023/api/keyword/update_user/${id}`, {
       method: "PUT",
       headers: {
@@ -124,9 +123,9 @@ const Profile = () => {
               ))}
             </div>
           </div>
-          <div className="flex flex-col mt-10">
-            <button className="editable mt-3 bg-bice-blue text-white p-2 px-3  rounded-lg" onClick={() => toggleEdit(true)}>Edit</button>
-            <button className="savable hidden mt-3 bg-bice-blue text-white px-2.5 py-2  rounded-lg" onClick={() => toggleEdit(false)}>Save</button>
+          <div className="flex flex-row-reverse gap-3">
+            <button className="editable w-20 mt-3 bg-bice-blue text-white p-1 px-2 rounded-lg" onClick={() => toggleEdit(true)}>Edit</button>
+            <button className="savable w-20 hidden mt-3 bg-bice-blue text-white p-1 px-2 rounded-lg" onClick={() => toggleEdit(false)}>Save</button>
           </div>
         </div>
       </div>

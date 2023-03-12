@@ -31,7 +31,7 @@ const WritePost = () => {
         },
       }).then((response) => {
         if (response.status === 200) return response.json();
-        throw new Error("authentication has been failed!");
+        throw new Error("authentication has failed!");
       }).then((resObject) => {
         setUser(resObject.user);
       }).catch((err) => {
@@ -53,7 +53,7 @@ const WritePost = () => {
 
     await response.json();
     if (response.status === 200) {
-      window.location.href = `/${id}`;
+      window.location.href = `/home/${id}`;
     }
   };
 

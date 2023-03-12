@@ -4,6 +4,7 @@ import fetch from "node-fetch";
 import cheerio from "cheerio";
 import nodemailer from "nodemailer";
 import Post from "../mongodb/models/post.js"
+import User from "../mongodb/models/user.js";
 
 const router = express.Router();
 
@@ -95,14 +96,16 @@ router.route("/tiobe").get(async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
 async function sendEmail(recipient, title, content) {
+  console.log(recipient);
   const transporter = nodemailer.createTransport({
     host: 'smtps.hiworks.com',
     port: 465,
     secure: true,
     auth: {
       user: 'dkdlenlggg2@hans.best',
-      pass: 'hackathone2023'
+      pass: 'hackathon2023'
     },
     tls: { rejectUnauthorized: false }
   });
