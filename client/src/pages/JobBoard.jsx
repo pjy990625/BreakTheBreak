@@ -59,15 +59,17 @@ const JobBoard = () => {
         <div className="main">
           <div className="flex gap-3 mb-5">
             <h2 className="text-bice-blue text-2xl font-bold">Job Board</h2>
-            <select className="bg-bice-blue text-white px-2 rounded-lg" onChange={(e) => setCategory(e.target.value)}>
-              {categories.map((category, index) => (
-                <option key={index} value={category}>{category}</option>
-              ))}
-            </select>
           </div>
-          
+
           <div className="flex justify-between mb-3">
-            <input className="border-slate-500 border-2 p-1 rounded-lg" type="text" placeholder="Title" onChange={(e) => setSearchKeyword(e.target.value)} />
+            <div className="flex gap-3">
+              <input className="border-slate-500 border-2 p-1 rounded-lg" type="text" placeholder="Title" onChange={(e) => setSearchKeyword(e.target.value)} />
+              <select className="bg-bice-blue text-white px-2 rounded-lg" onChange={(e) => setCategory(e.target.value)}>
+                {categories.map((category, index) => (
+                  <option key={index} value={category}>{category}</option>
+                ))}
+              </select>
+            </div>
             <select className="bg-slate-500 text-white p-1 rounded-lg" onChange={(e) => setSearchCategory(e.target.value)}>
               {searchCategories.map((category, index) => (
                 <option key={index} value={category}>{category}</option>

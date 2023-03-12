@@ -42,7 +42,7 @@ const Sidebar = () => {
         {
             display: 'Market Trends',
             icon: <img className='icons' src={MarketIcon} alt="" />,
-            to: `/trend`,
+            to: `/trend/${id}`,
             section: ''
         },
         {
