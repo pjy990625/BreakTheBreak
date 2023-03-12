@@ -3,13 +3,21 @@ body {
     font-weight: 400;
 }
 
+.content {
+    /* position: fixed; */
+    top: 0;
+    right: 0;
+    width: calc(100vw - 300px);
+    background-color: #f3f3f3;
+}
+
 .main {
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 60px);
     padding: 20px;
 }
 
 .navbar {
-    height: 50px;
+    height: 60px;
     background-color: #0e6ba8;
     color: white;
     display: flex;
@@ -23,15 +31,23 @@ body {
     margin-right: 40%;
 }
 
-.list {
+.nav-list {
     display: flex;
     align-items: center;
     list-style: none;
 }
 
-.listItem {
+.nav-listItem {
     margin-left: 20px;
+    left: 0;
     font-weight: 500;
+    cursor: pointer;
+}
+
+.greeting {
+    margin-right: 850px;
+    font-weight: 600;
+    font-size: large;
     cursor: pointer;
 }
 
@@ -41,13 +57,4 @@ body {
     border-radius: 50%;
     object-fit: cover;
     background-color: white;
-}
-
-.footer {
-    height: 50px;
-    background-color: #0e6ba8;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
 }

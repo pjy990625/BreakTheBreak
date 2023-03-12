@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import KeywordBlock from "../components/keyword_block";
+import Sidebar from "../components/Sidebar";
 import Navbar from '../components/Navbar';
 import "../index.css";
 
@@ -102,32 +103,30 @@ const WritePost = () => {
         onChange={( event, editor ) => setContent(editor.getData())}
       />
 
-      <div>
-        <h1 className="mt-5 mb-3 text-bice-blue font-semibold text-lg">Keywords</h1>
-        <input className="border-slate-500 border-2 p-1 rounded-lg mb-3" type="text" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
-        <button className="bg-bice-blue text-white p-1 px-2 rounded-lg ml-5" onClick={() => setSelectedKeywords([...selectedKeywords, search])}>Add Your Own!</button>
-        <div className="bg-slate-100 border rounded-lg h-fit p-3">
-          {filterKeywords(search).map((keyword, index) => (
-            <KeywordBlock style={{ color: 'lightgray' }} key={index} content={keyword} selected={false} onClick={selectKeyword} />
-          ))}
+          <div>
+            <h1 className="mt-5 mb-3 text-bice-blue font-semibold text-lg">Keywords</h1>
+            <input className="border-slate-500 border-2 p-1 rounded-lg mb-3" type="text" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
+            <button className="bg-bice-blue text-white p-1 px-2 rounded-lg ml-5" onClick={() => setSelectedKeywords([...selectedKeywords, search])}>Add Your Own!</button>
+            <div className="bg-slate-100 border rounded-lg h-fit p-3">
+              {filterKeywords(search).map((keyword, index) => (
+                <KeywordBlock style={{ color: 'lightgray' }} key={index} content={keyword} selected={false} onClick={selectKeyword} />
+              ))}
+            </div>
+          </div>
+          <div>
+            <h1 className="mt-3 text-bice-blue font-semibold">Selected Keywords</h1>
+            <div className="bg-slate-100 border rounded-lg h-fit p-3 min-h-[50px]">
+              {selectedKeywords.map((keyword, index) => (
+                <KeywordBlock key={index} content={keyword} selected={true} onClick={selectKeyword}></KeywordBlock>
+              ))}
+            </div>
+            <span>{title}</span>
+          </div>
+          <button className="mt-3 bg-bice-blue text-white p-1 px-2 rounded-lg" onClick={post}>Post</button>
+          <span>{title}</span>
         </div>
       </div>
-      <div>
-        <h1 className="mt-3 text-bice-blue font-semibold">Selected Keywords</h1>
-        <div className="bg-slate-100 border rounded-lg h-fit p-3 min-h-[50px]">
-          {selectedKeywords.map((keyword, index) => (
-            <KeywordBlock key={index} content={keyword} selected={true} onClick={selectKeyword}></KeywordBlock>
-          ))}
-        </div>
-        <span>{title}</span>
-      </div>
-<<<<<<< HEAD
     </>
-=======
-      <button className="mt-3 bg-bice-blue text-white p-1 px-2 rounded-lg" onClick={post}>Post</button>
-      <span>{title}</span>
-    </div>
->>>>>>> 048a33d5a92214bff553cbbbbda3b3ae7ee8b294
   )
 }
 
