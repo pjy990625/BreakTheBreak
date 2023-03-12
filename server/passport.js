@@ -8,7 +8,7 @@ const GOOGLE_CLIENT_SECRET = "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";
 const GITHUB_CLIENT_ID = "75998784fb102112336f";
 const GITHUB_CLIENT_SECRET = "3c2633c5782731b1bf6e6474a4f507e00795455d";
 
-// check if user exists in database
+// check if user already exists in database
 async function checkUser(profile, done) {
     const userId = profile.id;
 
