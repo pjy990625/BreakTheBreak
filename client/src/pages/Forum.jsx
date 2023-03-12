@@ -6,8 +6,6 @@ import "../../src/index.css";
 const Forum = () => {
   const [posts, setPosts] = useState([]);
 
-  const [category, setCategory] = useState("All");
-
   const searchCategories = ["Title and Content", "Title", "Content", "Keywords"];
   const [searchCategory, setSearchCategory] = useState("Title and Content");
 
@@ -48,7 +46,7 @@ const Forum = () => {
     };
 
     loadPosts();
-  }, [category, searchCategory, searchKeyword]);
+  }, [ searchCategory, searchKeyword]);
 
   return (
     <>

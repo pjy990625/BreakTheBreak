@@ -53,7 +53,7 @@ const Trend = () => {
               <thead className="bg-bice-blue text-white">
                 <tr className="text-left">
                   <th className="pl-3 py-1">Ranking</th>
-                  <th className="pl-3 py-1" colspan="2">Programming Language</th>
+                  <th className="pl-3 py-1" colSpan="2">Programming Language</th>
                   <th className="pl-3 py-1">Rating</th>
                 </tr>
               </thead>
