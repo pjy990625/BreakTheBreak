@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import KeywordBlock from "../components/keyword_block";
+import Sidebar from "../components/Sidebar";
 import Navbar from '../components/Navbar';
 
 const keyword_viewport = {
@@ -86,34 +87,37 @@ const WritePost = () => {
 
   return (
     <>
-      <Navbar user={user} />
-      <div className="main">
-        <h1>Write Post</h1>
-        <input type="text" placeholder="Title" onChange={(e) => setTitle(e.target.value)} />
-        <CKEditor
-          editor={ClassicEditor}
-          onChange={(event, editor) => setContent(editor.getData())}
-        />
-        <button onClick={post}>Post</button>
-        <div>
-          <h1>Keywords</h1>
-          <input type="text" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
-          <button onClick={() => setSelectedKeywords([...selectedKeywords, search])}>Add Your Own!</button>
-          <div style={keyword_viewport}>
-            {filterKeywords(search).map((keyword, index) => (
-              <KeywordBlock key={index} content={keyword} selected={false} onClick={selectKeyword}></KeywordBlock>
-            ))}
+      <Sidebar />
+      <div className="content">
+        <Navbar user={user} />
+        <div className="main">
+          <h1>Write Post</h1>
+          <input type="text" placeholder="Title" onChange={(e) => setTitle(e.target.value)} />
+          <CKEditor
+            editor={ClassicEditor}
+            onChange={(event, editor) => setContent(editor.getData())}
+          />
+          <button onClick={post}>Post</button>
+          <div>
+            <h1>Keywords</h1>
+            <input type="text" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
+            <button onClick={() => setSelectedKeywords([...selectedKeywords, search])}>Add Your Own!</button>
+            <div style={keyword_viewport}>
+              {filterKeywords(search).map((keyword, index) => (
+                <KeywordBlock key={index} content={keyword} selected={false} onClick={selectKeyword}></KeywordBlock>
+              ))}
+            </div>
+            <div>
+              <h1>Selected Keywords</h1>
+              <div style={keyword_viewport}>
+                {selectedKeywords.map((keyword, index) => (
+                  <KeywordBlock key={index} content={keyword} selected={true} onClick={selectKeyword}></KeywordBlock>
+                ))}
+              </div>
+            </div>
           </div>
+          <span>{title}</span>
         </div>
-        <div>
-          <h1>Selected Keywords</h1>
-          <div style={keyword_viewport}>
-            {selectedKeywords.map((keyword, index) => (
-              <KeywordBlock key={index} content={keyword} selected={true} onClick={selectKeyword}></KeywordBlock>
-            ))}
-          </div>
-        </div>
-        <span>{title}</span>
       </div>
     </>
   )
