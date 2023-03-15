@@ -1,0 +1,3 @@
+[submodule "COMP4959/labs/lab3/langtons-ant/COMP4959/labs/lab3/langtons-ant/www"]
+	path = COMP4959/labs/lab3/langtons-ant/COMP4959/labs/lab3/langtons-ant/www
+	url = https://github.com/pjy990625/Langtons-Ant.git
