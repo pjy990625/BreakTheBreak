@@ -1,5 +1,17 @@
 # HackTheBreak2023
 
+## Usage
+
+###  Run in Browsers
+1. `npm start` in client folder
+```
+npm start
+```
+2. `nodemon` in server folder
+```
+nodemon
+```
+
 ## Inspiration
 As we went through the pandemic, we learned that getting stuck and being unable to progress in careers is a depressing and frustrating experience. To help people overcome the difficulty of job security, we developed a web application, BreakTheBreak, that helps you find the position that your skills deserve.
 
